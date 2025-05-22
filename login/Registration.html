@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work-Life Balance Support</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            display: flex;
+            width: 80%;
+            max-width: 1200px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .left-panel {
+            flex: 1;
+            padding: 40px;
+            background-color: #4a6fa5;
+            color: white;
+        }
+        .right-panel {
+            flex: 1;
+            padding: 40px;
+        }
+        h1 {
+            margin-top: 0;
+            font-size: 2.2rem;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #4a6fa5;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #3a5a80;
+        }
+        .toggle-form {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .toggle-form a {
+            color: #4a6fa5;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .error-message {
+            color: #e74c3c;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+        .app-features {
+            margin-top: 40px;
+        }
+        .feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .feature-icon {
+            margin-right: 15px;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-panel">
+            <h1>Work-Life Balance Support</h1>
+            <p>An application designed to help employees maintain a healthy balance between work and personal life.</p>
+            
+            <div class="app-features">
+                <div class="feature">
+                    <div class="feature-icon">🧘</div>
+                    <div>Stress Management Tools</div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">💪</div>
+                    <div>Fitness Program Access</div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🧠</div>
+                    <div>Mental Health Support</div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">👨‍👩‍👧</div>
+                    <div>Family-Work Balance Resources</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="right-panel" id="login-panel">
+            <h1>Welcome Back</h1>
+            <p>Please login to access your dashboard</p>
+            
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required>
+                    <div class="error-message" id="login-error">Invalid email or password. Please try again or <a href="#" id="reset-password">reset your password</a>.</div>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+            
+            <div class="toggle-form">
+                Don't have an account? <a href="#" id="show-register">Register here</a>
+            </div>
+        </div>
+        
+        <div class="right-panel" id="register-panel" style="display: none;">
+            <h1>Create Account</h1>
+            <p>Fill in your details to register</p>
+            
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="fullname">Full Name</label>
+                    <input type="text" id="fullname" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-email">Email</label>
+                    <input type="email" id="reg-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-password">Password</label>
+                    <input type="password" id="reg-password" required>
+                    <small>Create a strong password (min. 8 characters with numbers and symbols)</small>
+                </div>
+                <div class="form-group">
+                    <label for="bio">Bio/Employee Information</label>
+                    <input type="text" id="bio" required>
+                </div>
+                <button type="submit">Register</button>
+            </form>
+            
+            <div class="toggle-form">
+                Already have an account? <a href="#" id="show-login">Login here</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle between login and register forms
+        document.getElementById('show-register').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('login-panel').style.display = 'none';
+            document.getElementById('register-panel').style.display = 'block';
+        });
+        
+        document.getElementById('show-login').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('register-panel').style.display = 'none';
+            document.getElementById('login-panel').style.display = 'block';
+        });
+        
+        // Simulate login validation
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // In a real app, this would validate with a server
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            // Simple demo validation
+            if (email.includes('@') && password.length >= 8) {
+                // Successful login - redirect to dashboard
+                window.location.href = "dashboard.html";
+            } else {
+                // Show error
+                document.getElementById('login-error').style.display = 'block';
+            }
+        });
+        
+        // Simulate registration
+        document.getElementById('register-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // In a real app, this would send data to server
+            alert('Registration successful! Please login with your new credentials.');
+            document.getElementById('register-panel').style.display = 'none';
+            document.getElementById('login-panel').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
