@@ -1,0 +1,27 @@
+<script>
+    document.getElementById('register-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        var fullname = document.getElementById('fullname').value;
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+
+        var formData = new FormData();
+        formData.append('fullname', fullname);
+        formData.append('email', email);
+        formData.append('password', password);
+
+        // Kirim data menggunakan AJAX
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'register.php', true);
+        xhr.onload = function() {
+            if (xhr.status == 200) {
+                alert('Registration successful!');
+                window.location.href = 'login.html'; // Redirect setelah registrasi sukses
+            } else {
+                alert('Something went wrong!');
+            }
+        };
+        xhr.send(formData);
+    });
+</script>

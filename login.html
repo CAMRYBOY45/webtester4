@@ -1,0 +1,24 @@
+<script>
+    document.getElementById('login-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+
+        var formData = new FormData();
+        formData.append('email', email);
+        formData.append('password', password);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'login.php', true);
+        xhr.onload = function() {
+            if (xhr.status == 200) {
+                alert('Login successful!');
+                window.location.href = 'dashboard.html'; // Redirect ke dashboard setelah login sukses
+            } else {
+                alert('Invalid email or password!');
+            }
+        };
+        xhr.send(formData);
+    });
+</script>
